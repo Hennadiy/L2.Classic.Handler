@@ -4,24 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Login Handler" Height="300" Width="400">
+        Title="Login Handler" Height="310" Width="625" ResizeMode="NoResize">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Name="LoginTextBox" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
-        <TextBox HorizontalAlignment="Left" Name="PasswordTextBox" Height="23" Margin="159,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
+        <TextBox HorizontalAlignment="Left" TextWrapping="NoWrap" Name="LoginTextBox" Height="23" Margin="10,36,0,0" Text="" VerticalAlignment="Top" Width="273"/>
+        <TextBox HorizontalAlignment="Left" TextWrapping="NoWrap" Name="PasswordTextBox" Height="23" Margin="288,36,0,0" Text="" VerticalAlignment="Top" Width="228"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="157,10,0,0" VerticalAlignment="Top"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="307,36,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="AddAccount_Click"/>
-        <ItemsControl Margin="10,71,0,10" Name="AccountsList">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Label Content="{Binding Login}" HorizontalAlignment="Left" Width="140"/>
-                        <Button Content="Delete" Click="Delete_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,0,84,0"/>
-                        <Button Content="Login" Click="Login_Click" Width="75" Height="23" Margin="0,0,2,0" HorizontalAlignment="Right"/>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
+        <Label Content="Password" HorizontalAlignment="Left" Margin="288,10,0,0" VerticalAlignment="Top"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="521,36,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="AddAccount_Click"/>
+        <ScrollViewer Grid.Column="0" Margin="10,81,0,10">
+            <ItemsControl Name="AccountsList" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Name="item">
+                            <Grid Margin="0,5,0,5">
+                                <Label Content="{Binding Login}" HorizontalAlignment="Left" Width="410"/>
+                                <Button Content="Delete" Click="Delete_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,0,92,0"/>
+                                <Button Content="Login" Click="Login_Click" Width="75" Height="23" Margin="0,0,10,0" HorizontalAlignment="Right"/>
+                            </Grid>
+                        </Grid>
+                        <DataTemplate.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="White" TargetName="item"/>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="LightGray" TargetName="item"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Window>
